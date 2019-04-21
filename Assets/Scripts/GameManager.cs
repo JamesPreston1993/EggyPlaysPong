@@ -48,7 +48,7 @@ public class GameManager
     {
         PlayerOneName = "Blue Eggy";
         PlayerTwoName = "Red Eggy";
-        ScoreLimit = 5;
+        ScoreLimit = 1;
     }
 
     private static GameManager instance;

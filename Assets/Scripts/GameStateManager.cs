@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class GameStateManager : MonoBehaviour
     {
         initialPlayerOnePosition = playerOne.position;
         initialPlayerTwoPosition = playerTwo.position;
+        GameManager.Instance.PlayerOneScore = 0;
+        GameManager.Instance.PlayerTwoScore = 0;
     }
 
     void Start ()
@@ -26,5 +29,16 @@ public class GameStateManager : MonoBehaviour
                 Instantiate(ballPrefab);
             }
         };
+    }
+
+    void Update()
+    {
+        if (GameManager.Instance.IsGameOver)
+        {
+            if (Input.GetKey(KeyCode.Space))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+        }
     }
 }

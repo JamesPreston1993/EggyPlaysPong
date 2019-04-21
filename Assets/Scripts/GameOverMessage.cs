@@ -10,7 +10,9 @@ public class GameOverMessage : MonoBehaviour
         GameManager.Instance.GameOver = winnerName =>
         {
             GameManager.Instance.IsGameOver = true;
-            winner.SetText(string.Format("{0} wins!", winnerName));
+
+            var message = string.Format("{0} wins!\n\nPress Space to\nPlay Again", winnerName);
+            winner.SetText(message);
         };
     }
 }
