@@ -11,9 +11,22 @@ public class BallMovement : MonoBehaviour
     {
         ballRigidbody = GetComponent<Rigidbody2D>();
         random = new Random();
-        var direction = random.Next(1, 10) % 2 == 0 
+
+        var direction = RandomHorizontalDirection() + RandomVerticalDirection();
+        ballRigidbody.AddForce(direction * speed);
+    }
+
+    Vector2 RandomHorizontalDirection()
+    {
+        return random.Next(1, 10) % 2 == 0
             ? Vector2.left
             : Vector2.right;
-        ballRigidbody.AddForce(direction * speed);
+    }
+
+    Vector2 RandomVerticalDirection()
+    {
+        return random.Next(1, 10) % 2 == 0
+            ? Vector2.up
+            : Vector2.down;
     }
 }
