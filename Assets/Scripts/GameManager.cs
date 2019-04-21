@@ -1,4 +1,6 @@
-﻿public class GameManager
+﻿using System;
+
+public class GameManager
 {
     public int PlayerOneScore { get; set; }
 
@@ -20,4 +22,6 @@
             return instance;
         }
     }
+
+    public Action ResetGame { get; set; }
 }

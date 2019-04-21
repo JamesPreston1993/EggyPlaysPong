@@ -33,14 +33,22 @@ public class BallMovement : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        var goalHit = false;
         if (collision.gameObject.name == "Player One Goal")
         {
             GameManager.Instance.PlayerTwoScore++;
+            goalHit = true;
         }
-
-        if (collision.gameObject.name == "Player Two Goal")
+        else if (collision.gameObject.name == "Player Two Goal")
         {
             GameManager.Instance.PlayerOneScore++;
+            goalHit = true;
+        }
+
+        if (goalHit)
+        {
+            GameManager.Instance.ResetGame();
+            Destroy(gameObject);
         }
     }
 }
