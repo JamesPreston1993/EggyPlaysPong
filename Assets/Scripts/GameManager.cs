@@ -2,14 +2,53 @@
 
 public class GameManager
 {
-    public int PlayerOneScore { get; set; }
+    public string PlayerOneName { get; set; }
 
-    public int PlayerTwoScore { get; set; }
+    private int playerOneScore;
+    public int PlayerOneScore
+    {
+        get
+        {
+            return playerOneScore;
+        }
+        set
+        {
+            playerOneScore = value;
+            if (playerOneScore >= ScoreLimit)
+            {
+                GameOver(PlayerOneName);
+            }
+        }
+    }
+
+    public string PlayerTwoName { get; set; }
+
+    private int playerTwoScore;
+    public int PlayerTwoScore
+    {
+        get
+        {
+            return playerTwoScore;
+        }
+        set
+        {
+            playerTwoScore = value;
+            if (playerTwoScore >= ScoreLimit)
+            {
+                GameOver(PlayerTwoName);
+            }
+        }
+    }
+
+    public int ScoreLimit { get; set; }
+
+    public bool IsGameOver { get; set; }
 
     private GameManager()
     {
-        PlayerOneScore = 0;
-        PlayerTwoScore = 0;
+        PlayerOneName = "Blue Eggy";
+        PlayerTwoName = "Red Eggy";
+        ScoreLimit = 5;
     }
 
     private static GameManager instance;
@@ -24,4 +63,6 @@ public class GameManager
     }
 
     public Action ResetGame { get; set; }
+
+    public Action<string> GameOver { get; set; }
 }

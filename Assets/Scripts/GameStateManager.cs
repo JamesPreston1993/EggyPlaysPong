@@ -19,9 +19,12 @@ public class GameStateManager : MonoBehaviour
     {
         GameManager.Instance.ResetGame = () =>
         {
-            playerOne.position = initialPlayerOnePosition;
-            playerTwo.position = initialPlayerTwoPosition;
-            Instantiate(ballPrefab);
+            if (!GameManager.Instance.IsGameOver)
+            {
+                playerOne.position = initialPlayerOnePosition;
+                playerTwo.position = initialPlayerTwoPosition;
+                Instantiate(ballPrefab);
+            }
         };
     }
 }
