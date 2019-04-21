@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameOverMessage : MonoBehaviour
 {
     public TextMeshProUGUI winner;
+    public TextMeshProUGUI restart;
 
     void Start ()
     {
@@ -11,8 +12,10 @@ public class GameOverMessage : MonoBehaviour
         {
             GameManager.Instance.IsGameOver = true;
 
-            var message = string.Format("{0} wins!\n\nPress Space to\nPlay Again", winnerName);
+            var message = string.Format("{0} wins!", winnerName);
             winner.SetText(message);
+
+            restart.SetText("Press Space to Play Again");
         };
     }
 }
