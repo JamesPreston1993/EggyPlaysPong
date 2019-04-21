@@ -7,6 +7,7 @@ public class BallMovement : MonoBehaviour
 
     private Rigidbody2D ballRigidbody;
     private Random random;
+
     void Start()
     {
         ballRigidbody = GetComponent<Rigidbody2D>();
@@ -28,5 +29,18 @@ public class BallMovement : MonoBehaviour
         return random.Next(1, 10) % 2 == 0
             ? Vector2.up
             : Vector2.down;
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.name == "Player One Goal")
+        {
+            GameManager.Instance.PlayerTwoScore++;
+        }
+
+        if (collision.gameObject.name == "Player Two Goal")
+        {
+            GameManager.Instance.PlayerOneScore++;
+        }
     }
 }
