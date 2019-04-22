@@ -37,6 +37,7 @@ public class GameStateManager : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                GameManager.Instance.IsGameOver = false;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
