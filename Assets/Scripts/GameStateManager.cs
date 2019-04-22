@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameStateManager : MonoBehaviour
@@ -6,6 +8,7 @@ public class GameStateManager : MonoBehaviour
     public Transform playerOne;
     public Transform playerTwo;
     public GameObject ballPrefab;
+    public TextMeshProUGUI countdown;
 
     private Vector3 initialPlayerOnePosition;
     private Vector3 initialPlayerTwoPosition;
@@ -26,9 +29,11 @@ public class GameStateManager : MonoBehaviour
             {
                 playerOne.position = initialPlayerOnePosition;
                 playerTwo.position = initialPlayerTwoPosition;
-                Instantiate(ballPrefab);
+                var ball = Instantiate(ballPrefab);
+                StartCoroutine(CountdownAndStart(ball.GetComponent<BallMovement>()));
             }
         };
+        GameManager.Instance.ResetGame();
     }
 
     void Update()
@@ -41,5 +46,20 @@ public class GameStateManager : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
+    }
+
+    private IEnumerator CountdownAndStart(BallMovement ball)
+    {
+        countdown.SetText("3");
+        yield return new WaitForSeconds(1f);
+
+        countdown.SetText("2");
+        yield return new WaitForSeconds(1f);
+
+        countdown.SetText("1");
+        yield return new WaitForSeconds(1f);
+
+        countdown.SetText("");
+        ball.StartMovement();
     }
 }
