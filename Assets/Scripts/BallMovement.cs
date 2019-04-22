@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using Random = System.Random;
 
 public class BallMovement : MonoBehaviour
@@ -12,6 +13,14 @@ public class BallMovement : MonoBehaviour
     {
         ballRigidbody = GetComponent<Rigidbody2D>();
         random = new Random();
+
+        StartCoroutine(StartMovement());
+    }
+
+
+    public IEnumerator StartMovement()
+    {
+        yield return new WaitForSeconds(0.1f);
 
         var direction = RandomHorizontalDirection() + RandomVerticalDirection();
         ballRigidbody.AddForce(direction * speed);
